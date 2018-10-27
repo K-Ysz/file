@@ -29,7 +29,8 @@ void CreateConButton(int cnt){	// 条件サイドの画面構築関数
 		DrawBox(x, pnt, x + WIDTH + 1, pnt + HEIGHT + 1, BLACK, TRUE);
 		DrawBox(x, pnt, x + WIDTH + 1, pnt + HEIGHT + 1, WHITE, FALSE);
 		// 条件枠文字列描画
-		DrawFormatString(x + Size / 2, pnt + Size / 2, WHITE, i < cnt - 1 ? "＜ここに条件が入る＞" : (cnt == 1 ? "いつも" : "（上のどれでもないとき）"));
+		DrawFormatString(x + Size / 2, pnt + Size / 2, WHITE,
+		                 i < cnt - 1 ? "＜ここに条件が入る＞" : (cnt == 1 ? "いつも" : "（上のどれでもないとき）"));
 		
 		// 矢印描画
 		DrawFormatString(x + WIDTH + Size, pnt + Size / 2, WHITE, "→");
@@ -43,16 +44,24 @@ void CreateConButton(int cnt){	// 条件サイドの画面構築関数
 		// elseは削除できないように、あと下限1なのでcnt=1なら描画しない
 		if(cnt > 1 && i < cnt - 1){
 			// 削除ボタン枠描画
-			DrawBox(x + WIDTH + HEIGHT * 4 + HEIGHT / 8, pnt + HEIGHT / 8, x + WIDTH + HEIGHT * 4 + HEIGHT * 7 / 8 + 1, pnt + HEIGHT * 7 / 8 + 1, BLACK, TRUE);
-			DrawBox(x + WIDTH + HEIGHT * 4 + HEIGHT / 8, pnt + HEIGHT / 8, x + WIDTH + HEIGHT * 4 + HEIGHT * 7 / 8 + 1, pnt + HEIGHT * 7 / 8 + 1, WHITE, FALSE);
+			DrawBox(x + WIDTH + HEIGHT * 4 + HEIGHT / 8, pnt + HEIGHT / 8,
+			        x + WIDTH + HEIGHT * 4 + HEIGHT * 7 / 8 + 1, pnt + HEIGHT * 7 / 8 + 1,
+			        BLACK, TRUE);
+			DrawBox(x + WIDTH + HEIGHT * 4 + HEIGHT / 8, pnt + HEIGHT / 8,
+			        x + WIDTH + HEIGHT * 4 + HEIGHT * 7 / 8 + 1, pnt + HEIGHT * 7 / 8 + 1,
+			        WHITE, FALSE);
 			// 削除ボタン文字列描画
 			DrawFormatString(x + WIDTH + HEIGHT * 4 + HEIGHT / 4, pnt + HEIGHT / 4, WHITE, "－");
 		}
 		
 		// 並べ替えボタン描画(cnt>2のとき)
 		if(cnt > 2 && i < cnt - 1){
-			DrawBox(x + WIDTH + HEIGHT * 5 + HEIGHT / 8, pnt + HEIGHT / 8, x + WIDTH + HEIGHT * 5 + HEIGHT * 7 / 8 + 1, pnt + HEIGHT * 7 / 8 + 1, BLACK, TRUE);
-			DrawBox(x + WIDTH + HEIGHT * 5 + HEIGHT / 8, pnt + HEIGHT / 8, x + WIDTH + HEIGHT * 5 + HEIGHT * 7 / 8 + 1, pnt + HEIGHT * 7 / 8 + 1, WHITE, FALSE);
+			DrawBox(x + WIDTH + HEIGHT * 5 + HEIGHT / 8, pnt + HEIGHT / 8,
+			        x + WIDTH + HEIGHT * 5 + HEIGHT * 7 / 8 + 1, pnt + HEIGHT * 7 / 8 + 1,
+			        BLACK, TRUE);
+			DrawBox(x + WIDTH + HEIGHT * 5 + HEIGHT / 8, pnt + HEIGHT / 8,
+			        x + WIDTH + HEIGHT * 5 + HEIGHT * 7 / 8 + 1, pnt + HEIGHT * 7 / 8 + 1,
+			        WHITE, FALSE);
 			DrawFormatString(x + WIDTH + HEIGHT * 5 + HEIGHT / 8, pnt + HEIGHT / 4, WHITE, "↑");
 			DrawFormatString(x + WIDTH + HEIGHT * 5 + HEIGHT / 8 * 3, pnt + HEIGHT / 4, WHITE, "↓");
 		}
@@ -60,8 +69,12 @@ void CreateConButton(int cnt){	// 条件サイドの画面構築関数
 	pnt = PNT;
 	// 条件数が12未満だったら追加ボタンを描画
 	if(cnt < 12){
-		DrawBox(pnt + HEIGHT / 8, pnt + HEIGHT * cnt + HEIGHT / 8, pnt + HEIGHT * 7 / 8 + 1, pnt + HEIGHT * cnt + HEIGHT * 7 / 8 + 1, BLACK, TRUE);
-		DrawBox(pnt + HEIGHT / 8, pnt + HEIGHT * cnt + HEIGHT / 8, pnt + HEIGHT * 7 / 8 + 1, pnt + HEIGHT * cnt + HEIGHT * 7 / 8 + 1, WHITE, FALSE);
+		DrawBox(pnt + HEIGHT / 8, pnt + HEIGHT * cnt + HEIGHT / 8,
+		        pnt + HEIGHT * 7 / 8 + 1, pnt + HEIGHT * cnt + HEIGHT * 7 / 8 + 1,
+		        BLACK, TRUE);
+		DrawBox(pnt + HEIGHT / 8, pnt + HEIGHT * cnt + HEIGHT / 8,
+		        pnt + HEIGHT * 7 / 8 + 1, pnt + HEIGHT * cnt + HEIGHT * 7 / 8 + 1,
+		        WHITE, FALSE);
 		DrawFormatString(pnt + HEIGHT / 4, pnt + HEIGHT * cnt + HEIGHT / 4, WHITE, "＋");
 	}
 }
@@ -164,12 +177,18 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 				// 何か選んでたらそれを消去
 				if(Choice != -1){
 					switch(Type){
-						case 0 : DrawBox(PNT + 4, PNT + HEIGHT * Choice + 4, PNT + WIDTH - 3, PNT + HEIGHT * (Choice + 1) - 3, BLACK, FALSE);	break;
-						case 1 : DrawBox(PNT + WIDTH + HEIGHT + HEIGHT / 2 + 4, PNT + HEIGHT * Choice + 4, PNT + HEIGHT * 4 + WIDTH - 3, PNT + HEIGHT * (Choice + 1) - 3, BLACK, FALSE);	break;
+						case 0 : DrawBox(PNT + 4, PNT + HEIGHT * Choice + 4,
+						                 PNT + WIDTH - 3, PNT + HEIGHT * (Choice + 1) - 3, BLACK, FALSE);
+						         break;
+						case 1 : DrawBox(PNT + WIDTH + HEIGHT + HEIGHT / 2 + 4, PNT + HEIGHT * Choice + 4,
+						                 PNT + HEIGHT * 4 + WIDTH - 3, PNT + HEIGHT * (Choice + 1) - 3, BLACK, FALSE);
+						         break;
 					}
 				}
 				// 選択枠をオレンジで囲う、選択枠を保存
-				DrawBox(PNT + 4, PNT + HEIGHT * (y / HEIGHT) + 4, PNT + WIDTH - 3, PNT + HEIGHT * (y / HEIGHT + 1) - 3, GetColor(255, 165, 0), FALSE);
+				DrawBox(PNT + 4, PNT + HEIGHT * (y / HEIGHT) + 4,
+				        PNT + WIDTH - 3, PNT + HEIGHT * (y / HEIGHT + 1) - 3,
+				        GetColor(255, 165, 0), FALSE);
 				Choice = y / HEIGHT;
 				Type = 0;
 				
@@ -183,12 +202,18 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 				// 何か選んでたらそれを消去
 				if(Choice != -1){
 					switch(Type){
-						case 0 : DrawBox(PNT + 4, PNT + HEIGHT * Choice + 4, PNT + WIDTH - 3, PNT + HEIGHT * (Choice + 1) - 3, BLACK, FALSE);	break;
-						case 1 : DrawBox(PNT + WIDTH + HEIGHT * 3 / 2 + 4, PNT + HEIGHT * Choice + 4, PNT + HEIGHT * 4 + WIDTH - 3, PNT + HEIGHT * (Choice + 1) - 3, BLACK, FALSE);	break;
+						case 0 : DrawBox(PNT + 4, PNT + HEIGHT * Choice + 4,
+						                 PNT + WIDTH - 3, PNT + HEIGHT * (Choice + 1) - 3, BLACK, FALSE);
+						         break;
+						case 1 : DrawBox(PNT + WIDTH + HEIGHT + HEIGHT / 2 + 4, PNT + HEIGHT * Choice + 4,
+						                 PNT + HEIGHT * 4 + WIDTH - 3, PNT + HEIGHT * (Choice + 1) - 3, BLACK, FALSE);
+						         break;
 					}
 				}
 				// 選択枠をオレンジで囲う、選択枠を保存
-				DrawBox(PNT + WIDTH + HEIGHT * 3 / 2 + 4, PNT + HEIGHT * (y / HEIGHT) + 4, PNT + HEIGHT * 4 + WIDTH - 3, PNT + HEIGHT * (y / HEIGHT + 1) - 3, GetColor(255, 165, 0), FALSE);
+				DrawBox(PNT + WIDTH + HEIGHT * 3 / 2 + 4, PNT + HEIGHT * (y / HEIGHT) + 4,
+				        PNT + HEIGHT * 4 + WIDTH - 3, PNT + HEIGHT * (y / HEIGHT + 1) - 3,
+				        GetColor(255, 165, 0), FALSE);
 				Choice = y / HEIGHT;
 				Type = 1;
 				
@@ -212,7 +237,9 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 			// 追加枠選択処理
 			x = Mx - PNT;
 			n = My - (PNT + HEIGHT * Con_Cnt);
-			if(Con_Cnt < 12 && y / HEIGHT + 1 > Con_Cnt && HEIGHT / 8 <= x && x <= HEIGHT * 7 / 8 && HEIGHT / 8 <= n && n <= HEIGHT * 7 / 8){
+			if(Con_Cnt < 12 && y / HEIGHT + 1 > Con_Cnt &&
+			   HEIGHT / 8 <= x && x <= HEIGHT * 7 / 8 &&
+			   HEIGHT / 8 <= n && n <= HEIGHT * 7 / 8){
 				CreateConButton(++Con_Cnt);
 				Choice = -1;
 				WaitTimer(500);
