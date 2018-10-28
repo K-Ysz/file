@@ -27,32 +27,47 @@ void CreateMain(void){
 	DrawFormatString(SIZE / 2, WinY - HEIGHT * 2 + SIZE / 2, BLACK,
 	                 "メッセージボックス\n\nサンプルテキスト");
 	
-	// HPバー描画
+	// ステータス描画
+		// 相手側下地
+		DrawBox(-1, PNT, PNT * 3 + WIDTH + 1, PNT * 4 + 1, WHITE, TRUE);
+		DrawBox(-1, PNT, PNT * 3 + WIDTH + 1, PNT * 4 + 1, BLACK, FALSE);
 		// 相手のHP枠下地
-		DrawBox(PNT, PNT, PNT + WIDTH + 1, PNT + SIZE + 1, BLACK, TRUE);
-		// 相手の残りHPのテキスト下地
-		DrawBox(PNT + WIDTH, PNT,
-		        PNT + WIDTH + SIZE + 5, PNT + SIZE + 1, WHITE, TRUE);
+		DrawBox(PNT, PNT * 3 / 2, PNT + WIDTH + 1, PNT * 3 / 2 + SIZE + 1, BLACK, TRUE);
 		// 相手の残りHPのテキスト
-		DrawFormatString(PNT + WIDTH, PNT, BLACK, "%2d", HP_you);
+		DrawFormatString(PNT + WIDTH, PNT * 3 / 2, BLACK, "%2d", HP_you);
 		// 相手のHPバー
 		// 現在値によって色変化
-		DrawBox(PNT, PNT, PNT + SIZE * HP_you + 1, PNT + SIZE + 1,
+		DrawBox(PNT, PNT * 3 / 2, PNT + SIZE * HP_you + 1, PNT * 3 / 2 + SIZE + 1,
 		        HP_you > 10 ? GREEN : (HP_you > 4 ? YELLOW : RED), TRUE);
+		// 相手の名前
+		DrawFormatString(PNT, PNT * 3 / 2 + SIZE, BLACK, "＜ここに敵の名前＞");
+		// ターンの行動
+		DrawBox(PNT * 3 + WIDTH - SIZE * 5, PNT * 4 - SIZE * 2,
+		        PNT * 3 + WIDTH + 1, PNT * 4 + 1, BLACK, FALSE);
+		DrawFormatString(PNT * 3 + WIDTH - SIZE * 9 / 2, PNT * 4 - SIZE * 3 / 2, BLACK,
+		                 "こうどう");
+		
+		// 自分側下地
+		DrawBox(WinX - (PNT * 3 + WIDTH), WinY - (PNT * 4 + HEIGHT * 2),
+		        WinX + 2, WinY - (PNT + HEIGHT * 2) + 1, WHITE, TRUE);
+		DrawBox(WinX - (PNT * 3 + WIDTH), WinY - (PNT * 4 + HEIGHT * 2),
+		        WinX + 2, WinY - (PNT + HEIGHT * 2) + 1, BLACK, FALSE);
 		// 自分のHP枠下地
-		DrawBox(WinX - (PNT + WIDTH), WinY - (PNT + HEIGHT * 2 + SIZE),
-		        WinX - PNT + 1, WinY - (PNT + HEIGHT * 2) + 1, BLACK, TRUE);
-		// 自分の残りHPのテキスト下地
-		DrawBox(WinX - (PNT + WIDTH + SIZE + 4), WinY - (PNT + HEIGHT * 2 + SIZE),
-		        WinX - (PNT + WIDTH) + 1, WinY - (PNT + HEIGHT * 2) + 1, WHITE, TRUE);
+		DrawBox(WinX - (PNT + WIDTH), WinY - (PNT * 7 / 2 + HEIGHT * 2),
+		        WinX - PNT + 1, WinY - (PNT * 7 / 2 + HEIGHT * 2) + SIZE + 1, BLACK, TRUE);
 		// 自分の残りHPのテキスト
 		DrawFormatString(WinX - (PNT + WIDTH + SIZE + 4),
-		                 WinY - (PNT + HEIGHT * 2 + SIZE), BLACK, "%2d", HP_me);
+		                 WinY - (PNT * 7 / 2 + HEIGHT * 2), BLACK, "%2d", HP_me);
 		// 自分のHPバー
 		// 現在値によって色変化
-		DrawBox(WinX - (PNT + WIDTH), WinY - (PNT + HEIGHT * 2 + SIZE),
-		        WinX - (PNT + WIDTH) + SIZE * HP_me + 1, WinY - (PNT + HEIGHT * 2) + 1,
+		DrawBox(WinX - (PNT + WIDTH), WinY - (PNT * 7 / 2 + HEIGHT * 2),
+		        WinX - (PNT + WIDTH) + SIZE * HP_me + 1, WinY - (PNT * 7 / 2 + HEIGHT * 2) + SIZE + 1,
 		        HP_me > 10 ? GREEN : (HP_me > 4 ? YELLOW : RED), TRUE);
+		// ターンの行動
+		DrawBox(WinX - (PNT * 3 + WIDTH), WinY - (PNT * 4 + HEIGHT),
+		        WinX - (PNT * 3 + WIDTH) + SIZE * 5 + 1, WinY - (PNT + HEIGHT * 2) + 1, BLACK, FALSE);
+		DrawFormatString(WinX - (PNT * 3 + WIDTH) + SIZE / 2, WinY - (PNT * 4 + HEIGHT) + SIZE / 2, BLACK,
+		                 "こうどう");
 }
 
 // 構築画面の設計
